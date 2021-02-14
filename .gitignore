@@ -1,0 +1,6 @@
+/.idea
+.DS_Store
+/src/vendor
+/mysql/mysql-data
+._*
+*.log
