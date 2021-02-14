@@ -49,7 +49,7 @@ services:
       MYSQL_ROOT_PASSWORD: your_mysql_root_password
       SERVICE_NAME: mysql
     volumes:
-      - ./mysql/mysql-data:/var/lib/mysql
+      - ./mysql/mysql-data:/var/lib/mysql --user 1000
     networks:
       - app-network
 

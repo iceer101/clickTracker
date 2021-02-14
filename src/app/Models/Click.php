@@ -43,4 +43,9 @@ class Click extends Model
         return sha1($stringToHash);
     }
 
+    public function getClick()
+    {
+        return $this->whereKey($this->attributes['id'])->first();
+    }
+
 }
