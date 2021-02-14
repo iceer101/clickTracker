@@ -8,7 +8,6 @@ use App\Models\BadDomain;
 use App\Models\Click;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class ClickController
 {
@@ -117,6 +116,4 @@ class ClickController
         $data = $request->session()->get('error');
         response()->json($data)->withHeaders($headers)->send();
     }
-
-
 }

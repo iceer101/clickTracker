@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClickController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin_panel');
 });
 Route::get('/click', [ClickController::class, 'processClick']);
 Route::get('/success/{id}', [ClickController::class, 'success'])->name('success');
 Route::get('/error/{id}', [ClickController::class, 'error'])->name('error');
+
+Route::get('/getClicks', [AdminController::class, 'getClicks']);
+Route::get('/getBadDomains', [AdminController::class, 'getBadDomains']);
+Route::post('/addBadDomain', [AdminController::class, 'addBadDomain']);
