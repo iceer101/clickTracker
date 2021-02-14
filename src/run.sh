@@ -1,4 +1,5 @@
 #!/bin/sh
+composer install
 
 while ! nc -z db 3306; do
     echo 'No db connection... retry..'
