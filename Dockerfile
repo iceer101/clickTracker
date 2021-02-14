@@ -10,4 +10,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Change current user to www
 USER www
 
-CMD ["php-fpm"]
+#ENTRYPOINT ["ls", "-lah"]
+CMD ["./run.sh"]
+#CMD ["php-fpm"]

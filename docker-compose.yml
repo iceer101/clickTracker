@@ -8,28 +8,33 @@ services:
       dockerfile: Dockerfile
     container_name: app
     restart: always
+    ports:
+      - "80:80"
     environment:
       SERVICE_NAME: app
     working_dir: /var/www
     volumes:
       - ./src/:/var/www
-    #      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - db
     networks:
       - app-network
 
   #Nginx Service
-  webserver:
-    image: nginx:alpine
-    container_name: webserver
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./src:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - app-network
+  #  webserver:
+  #    image: nginx:alpine
+  #    container_name: webserver
+  #    restart: always
+  #    ports:
+  #      - "80:80"
+  #      - "443:443"
+  #    volumes:
+  #      - ./src:/var/www
+  #      - ./nginx/conf.d/:/etc/nginx/conf.d/
+  #    depends_on:
+  #      - db
+  #    networks:
+  #      - app-network
 
   #MySQL Service
   db:
@@ -39,12 +44,12 @@ services:
     ports:
       - "3306:3306"
     environment:
+      MYSQL_USER: root
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: your_mysql_root_password
       SERVICE_NAME: mysql
     volumes:
       - ./mysql/mysql-data:/var/lib/mysql
-    #      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
     networks:
       - app-network
 
