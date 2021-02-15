@@ -17,4 +17,9 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Change current user to www
 USER www
 
-CMD ["./run.sh"]
+USER root
+ENTRYPOINT ["bash", "-c", "chmod -R 777 /var/www/"]
+ENTRYPOINT ["bash", "-c", "chmod +X /var/www/run.sh"]
+
+USER www
+ENTRYPOINT ["bash", "-c", "sh ./run.sh"]
